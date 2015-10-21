@@ -1,0 +1,8 @@
+{
+	"ImportPath": "github.com/dnem/hello",
+	"GoVersion": "go1.5",
+	"Packages": [
+		"./..."
+	],
+	"Deps": []
+}
