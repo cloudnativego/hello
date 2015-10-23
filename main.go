@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/codegangsta/negroni"
 	"net/http"
 	"os"
 )
@@ -13,20 +14,16 @@ func main() {
 	if len(port) == 0 {
 		port = "3000"
 	}
-	host := os.Getenv("HOST")
-	if len(host) == 0 {
-		host = "0.0.0.0"
-	}
 
-	listenOn := host + ":" + port
+	mux := http.NewServeMux()
+  mux.HandleFunc("/", hello)
 
-	fmt.Printf("Server listening on: %s\n", listenOn)
-	err := http.ListenAndServe(listenOn, nil)
-	if err != nil {
-		panic(err)
-	}
+  n := negroni.Classic()
+  n.UseHandler(mux)
+	hostString := fmt.Sprintf(":%s", port)
+  n.Run(hostString)
 }
 
 func hello(res http.ResponseWriter, req *http.Request) {
-	fmt.Fprintln(res, "hello")
+	fmt.Fprintln(res, "Hello from Go!")
 }

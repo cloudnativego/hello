@@ -2,5 +2,5 @@
 applications:
 - name: hello
   memory: 8M
-  host: hello-go-buildpack
+  host: hello-go-buildpack-kevin
   buildpack: https://github.com/cloudfoundry/go-buildpack.git
