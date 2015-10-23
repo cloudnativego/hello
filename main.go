@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/codegangsta/negroni"
 	"net/http"
 	"os"
+
+	"github.com/codegangsta/negroni"
 )
 
 func main() {
@@ -16,12 +17,12 @@ func main() {
 	}
 
 	mux := http.NewServeMux()
-  mux.HandleFunc("/", hello)
+	mux.HandleFunc("/", hello)
 
-  n := negroni.Classic()
-  n.UseHandler(mux)
+	n := negroni.Classic()
+	n.UseHandler(mux)
 	hostString := fmt.Sprintf(":%s", port)
-  n.Run(hostString)
+	n.Run(hostString)
 }
 
 func hello(res http.ResponseWriter, req *http.Request) {
