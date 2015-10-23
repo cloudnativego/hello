@@ -1,8 +1,13 @@
 {
-	"ImportPath": "github.com/dnem/hello",
+	"ImportPath": "github.com/cloudnativego/hello",
 	"GoVersion": "go1.5",
 	"Packages": [
 		"./..."
 	],
-	"Deps": []
+	"Deps": [
+          {
+            "ImportPath": "github.com/codegangsta/negroni",
+            "Rev": "c7477ad8e330bef55bf1ebe300cf8aa67c492d1b"
+          }
+        ]
 }
