@@ -1,5 +1,5 @@
 box: google/golang
-  
+
 build:
 
   steps:
@@ -24,3 +24,12 @@ build:
         name: go test
         code: |
           godep go test ./...
+
+deploy:
+ steps:
+   - internal/docker-push:
+       username: $USERNAME
+       password: $PASSWORD
+       tag: hello
+       repository: cloudnativego/book
+       registry: https://registry.hub.docker.com
