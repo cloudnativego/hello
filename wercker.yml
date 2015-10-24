@@ -25,6 +25,12 @@ build:
         code: |
           godep go test ./...
 
+    - script:
+        name: copy files to wercker output
+        code: |
+          cp -R ./ ${WERCKER_OUTPUT_DIR}
+
+
 deploy:
  steps:
    - internal/docker-push:
