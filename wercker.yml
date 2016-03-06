@@ -1,7 +1,27 @@
-box: google/golang
+box: golang
+
+dev:
+  steps:
+    - setup-go-workspace:
+        package-dir: github.com/cloudnativego/hello
+
+    - script:
+        name: go get
+        code: |
+          cd $WERCKER_SOURCE_DIR
+          go version
+          go get -u github.com/tools/godep
+          export PATH=$WERCKER_SOURCE_DIR/bin:$PATH
+
+    - script:
+        name: env
+        code: env
+
+    - internal/watch:
+        code: go run main.go
+        reload: true
 
 build:
-
   steps:
     - setup-go-workspace
 
