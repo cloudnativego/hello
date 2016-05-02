@@ -6,16 +6,17 @@ dev:
         package-dir: github.com/cloudnativego/hello
 
     - script:
+        name: env
+        code: env
+
+    - script:
         name: go get
         code: |
           cd $WERCKER_SOURCE_DIR
           go version
-          go get -u github.com/tools/godep
+          go get -u github.com/Masterminds/glide
           export PATH=$WERCKER_SOURCE_DIR/bin:$PATH
-
-    - script:
-        name: env
-        code: env
+          glide install
 
     - internal/watch:
         code: go run main.go
@@ -23,27 +24,33 @@ dev:
 
 build:
   steps:
-    - setup-go-workspace
+    - setup-go-workspace:
+        package-dir: github.com/cloudnativego/hello
+
+    - script:
+        name: env
+        code: env
 
     - script:
         name: go get
         code: |
           cd $WERCKER_SOURCE_DIR
           go version
-          go get -u github.com/tools/godep
+          go get -u github.com/Masterminds/glide
           export PATH=$WERCKER_SOURCE_DIR/bin:$PATH
+          glide install
 
     # Build the project
     - script:
         name: go build
         code: |
-          godep go build ./...
+          go build
 
     # Test the project
     - script:
         name: go test
         code: |
-          godep go test ./...
+          go test -v $(glide novendor)
 
     - script:
         name: copy files to wercker output
