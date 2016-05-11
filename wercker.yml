@@ -65,6 +65,6 @@ deploy:
        password: $PASSWORD
        cmd: /pipeline/source/hello
        port: "8080"
-       tag: v1
+       tag: latest
        repository: cloudnativego/book-hello
        registry: https://registry.hub.docker.com
