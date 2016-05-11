@@ -2,7 +2,4 @@
 applications:
 - name: hello
   memory: 8M
-  host: hello
-  buildpack: https://github.com/cloudfoundry/go-buildpack.git
-  env:
-    GOPACKAGENAME: github.com/cloudnativego/hello
+  host: cng-hello
