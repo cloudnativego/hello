@@ -58,18 +58,18 @@ build:
           cp -R ./ ${WERCKER_OUTPUT_DIR}
 
 
-docker-deploy:
+deploy-dockerhub_cf:
  steps:
    - internal/docker-push:
-       username: $USERNAME
-       password: $PASSWORD
+       username: $DOCKER_USERNAME
+       password: $DOCKER_PASSWORD
        cmd: /pipeline/source/hello
        port: "8080"
        tag: latest
        repository: cloudnativego/book-hello
        registry: https://registry.hub.docker.com
 
-cloud-deploy:
+deploy-cloud:
  steps:
    - cng/cf-deploy:
        api: $API
